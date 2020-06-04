@@ -11,3 +11,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+
+class Referral(models.Model):
+    referrer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='referrer')
+    referred = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='referred')
+
+    class Meta:
+        unique_together = (('referrer', 'referred'), )
+
+    def __str__(self):
+        return str(self.referrer)

@@ -1,1 +1,8 @@
-export SECRET_KEY='=i#_myx1ip)1bb++3ax_rgz6(7wqj(rhjjvok*1v_8_f%xt='
+
+DATABASE_URL=
+SQLITE_URL=
+ENGINE=''
+NAME=''
+CACHE_URL=
+REDIS_URL=
+SECRET_KEY=''
