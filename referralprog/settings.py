@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -90,6 +92,9 @@ DATABASES = {
 
         'ENGINE': os.getenv('ENGINE'),
         'NAME': os.path.join(BASE_DIR, os.getenv('NAME')),
+        'TEST': {
+                'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
+        }
     }
 }
 
@@ -131,3 +136,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+ASGI_APPLICATION = 'referralprog.routing.application'
+
+# channels config
+CHANNEL_LAYERS = {
+    'default': {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [('localhost', 6379)],
+        },
+        # "ROUTING": 'referralprog.routing.application',
+    },
+}
+
